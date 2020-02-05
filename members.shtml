@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- members.shtml "holds" the perl file used to display all of the users -->
+<html>
+
+
+<head>
+	<meta charset = "utf-8" />
+	<title>MidFeed Members</title>
+
+</head>
+
+<body onload="checkIfLoggedIn(); admin();">
+	<!--#include virtual="assets/navBar.html"-->
+	<!--#include file="style.pl"-->
+	<div id="container">
+		<div id="insideContainer"></div>
+			<div id="border" style="margin-bottom:100px;">
+				<div class="padding" style="text-align:center;">
+					<h2 class="sectionHeader">Members</h2>
+					<!--#include file="members.pl"-->
+				</div>				
+			</div>
+		
+	</div>
+	<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+</body>
+
+</html>
+  

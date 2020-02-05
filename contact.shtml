@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+	<!-- Contact page for KAK -->
+	<!--Alam Oct 22-->
+	
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>MidFeed Creators</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body onload="checkIfLoggedIn(); admin();">
+	<!--#include virtual="assets/navBar.html"-->
+	<!--#include file="style.pl"-->
+	<div id="container">
+		<div id="insideContainer"></div>	
+		<div id="border">
+			<div class="padding" style="text-align:center;">
+				<h2>MidFeed Creators</h2>
+			</div><br/>
+			<div class="padding">
+				<img src="assets/alam.jpg" width="100" height="100" alt="alam.jpg"/>
+				<h3 class="sectionHeader">Didar Alam</h3>
+				Hello, there!! Welcome to MidFeed. We are glad to present you with the most innovative and smart social networking site only made for USNA. You are 
+				our proud users. If you face any problem along the way, please contact us. My contact info:<br />Company: 02<br />Bancroft: 1101<br />e-mail: m150084@usna.edu<br />
+				<em>"Thank you for visiting us"</em><br />
+			</div><br/>
+			<div class="padding">
+				<img src="assets/kawika.jpg" width="100" height="100" alt="kawika.jpg"/>
+				<h3 class="sectionHeader">Kawika Barabin</h3>
+				Hi, my name is Kawika Kimokeo Southern Barabin. I am a member of 24th Company, RahRah Rockstars! I enjoy long walk on the beach and extensive coding projects. 
+			</div><br/>
+			<div class="padding">
+				<img src="assets/kim.jpg" width="100" height="100" alt="kim.jpg"/>
+				<h3 class="sectionHeader">Jonathan Kim</h3>
+				Jonathan Chulwoo Kim<br />
+				Company: 28<br />
+				Room: 8237<br />
+				email: m153792@usna.edu<br />
+				Hobbies include holding hands, last minute scrambles to finish projects, and food.
+			</div><br/>
+				
+				
+			</div>
+		
+		</div>
+	<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+  <!-- MidFeed Welcome Page -->
+  <!-- Barabin - 10/22/2013 - 11:17 -->
+
+<html>
+
+
+<head>
+  <meta charset = "utf-8" />
+  <meta name="description" content="The website where Midshipmen stay updated." >
+  <meta name="keywords" content="MidFeed, midfeed, MIDFEED, midshipmen, mid">
+  <meta name="author" content="KAK">
+  <title>MidFeed</title>
+  <script type="text/javascript">
+	function quotes() {
+		var s = "";
+		var x = Math.floor( (Math.random()*5) );
+		switch( x ) {
+			case 0:
+				s = "Knowledge is power. Information is liberating. Education is the premise of progress, in every society, in every family. <br/>- Kofi Annan";
+				break;
+			case 1:
+				s = "Information is the oxygen of the modern age. It seeps through the walls topped by barbed wire, it wafts across the electrified borders. <br/>- Ronald Reagan";
+				break;
+			case 2:
+				s = "Getting information off the Internet is like taking a drink from a fire hydrant. <br/>- Mitchell Kapor";
+				break;
+			case 3:
+				s = "Information is the seed for an idea, and only grows when it's watered <br/>- Heinz V. Bergen";
+				break;
+			case 4:
+				s = "We live in an age that is driven by information. Technological breakthroughs... are changing the face of war and how we prepare for war. <br/>- William J. Perry";
+				break;
+		}
+		document.write( s );
+	}
+	
+	function checkSubmission() {
+		var submit = true;
+		var error = document.getElementsByName("error");
+		
+		//checks to see if all inputs are filled out
+		var array = [ "user", "password" ];
+		for( var i = 0; i < array.length; i++ ) {
+			var element = document.getElementsByName(array[i]);
+				
+			if( element[0].value == "" ) {
+				error[i].innerHTML = "*";
+				submit = false;
+			}
+			else {
+				error[i].innerHTML = "";
+			}
+		}
+		if( !submit ) {
+			error[2].innerHTML = "Fill in (*) before continuing!";
+		}
+		return submit;
+	}
+		
+	function checkIfLoggedInIndex() {
+		var username = getCookie( "userid" );
+		var auth	 = getCookie( "auth" );
+		if (!(username == null || username == "" || auth == null || auth == "")) { window.location = "path.pl?path=home.shtml"; }
+		else {
+			var e = document.getElementById( "friends" );
+			e.href = "signup.shtml";
+			e.innerHTML = "Signup";
+			
+			document.getElementById( "homeIcon" ).href = "index.shtml";
+			
+			document.getElementById( "logout" ).style.display = "none";
+			
+		}
+	}
+		
+  </script>
+</head>
+
+<body onload="checkIfLoggedInIndex()">
+	<!--#include virtual="assets/navBar.html"-->
+	<!--#include file="style.pl"-->
+	<div id="container">
+		<div id="insideContainer"></div>
+			<div id="welcome"><div class="padding">
+				<h1 class="sectionHeader"> MidFeed. </h1>
+				<p><script type="text/javascript">quotes();</script></p>
+				<form name="login" action="login.pl" method="get" onsubmit="return checkSubmission()">
+				<input type="text" name="user" size="32" maxlength="32" placeholder="Email or Username" /><span class="error" name="error"></span><br/>
+				<input type="password" name="password" size="32" maxlength="32" placeholder="Password" /><span class="error" name="error"></span><br/>
+				<span class="error" name="error"></span><br/>
+				<input type="submit" class="submitButton" value="Login">
+				</form>
+			</div></div>
+		
+	</div>
+	<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+</body>
+
+</html>
+  

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- -->
+<html>
+
+
+<head>
+	<meta charset = "utf-8" />
+	<title>MidFeed Admin</title>
+
+
+</head>
+
+<body onload="checkCookie(); admin();">
+	<!--#include virtual="assets/navBar.html"-->
+	<!--#include file="style.pl"-->
+	<div id="container">
+		<div id="insideContainer"></div>
+			<div id="border" style="margin-bottom:100px;text-align:center;" >
+				<h2 class="padding" style="text-align:center;">Manage Users</h2>
+				<div id="feed">
+					<!--#include file="statistics.pl"-->
+				</div>
+				<div id="feed">
+					<!--#include file="admin.pl"-->
+				</div>
+			</div>	
+	</div>
+	<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+</body>
+
+</html>
+  

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- This displays the results of the search.pl and directs the user to a site with the matched 'keyword' statuses. -->
+<html>
+
+
+<head>
+	<meta charset = "utf-8" />
+	<title>MidFeed Search</title>
+
+</head>
+
+<body onload="checkIfLoggedIn(); admin()">
+	<!--#include virtual="assets/navBar.html"-->
+	<!--#include file="style.pl"-->
+	<div id="container">
+		<div id="insideContainer"></div>
+			<div id="border" style="margin-bottom: 100px;">
+				<h2 class="padding" style="text-align:center;">Results</h2>
+				<div id="feed">
+					<!--#include file="search.pl"-->
+				</div>
+			</div>	
+	</div>
+	<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+</body>
+
+</html>
+  

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- This page allows the user to change their color scheme, profile picture, and biography -->
+<!-- All HTML pages uses Perl files to dynamically alter the page to fit the user -->
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>MidFeed Signup</title>
+	<link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body onload="checkCookie()">
+	<!--#include virtual="assets/navBar.html"-->
+	<!--#include file="style.pl"-->
+	<div id="container">
+		<div id="insideContainer"></div>
+			<div id="border" style="margin-bottom:100px;">
+			<div class="padding">
+				<h1 class="sectionHeader" style="margin-bottom:0;">Edit Profile</h1>
+				<span class="error" >*If changes don't take effect immediately, reload the page to show changes.</span>
+				<h3>Change Site's Color Theme</h3>
+					<a href="changeStyle.pl?color=yellow"><button type="button" class="profileHeaderButton">Yellow</button></a>
+					<a href="changeStyle.pl?color=green"><button type="button" class="profileHeaderButton">Green</button></a>
+					<a href="changeStyle.pl?color=orange"><button type="button" class="profileHeaderButton">Orange</button></a>
+					<a href="changeStyle.pl?color=red"><button type="button" class="profileHeaderButton">Red</button></a>
+					<a href="changeStyle.pl?color=purple"><button type="button" class="profileHeaderButton">Purple</button></a>
+					<a href="changeStyle.pl?color=default"><button type="button" class="profileHeaderButton">Blue</button></a>
+					
+				<hr/>
+					<!--#include file="uploadPhoto.pl"-->
+					<!--#include file="editProfile.pl"-->
+				<br/><br/>
+					
+					
+				
+			</div></div>
+	<br/><br/>		
+	</div>
+	
+	<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+</body>
+
+</html>
+  

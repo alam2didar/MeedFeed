@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- Actually holds the profile page. This is what displays when clicking 'View Profile'
+     It displays either your profile or the profile of the user you click on-->
+<html>
+
+
+<head>
+	<meta charset = "utf-8" />
+	<title>MidFeed Profile</title>
+	<script src="assets/jsFunctions.js"></script>
+</head>
+
+<body onload="checkIfLoggedIn(); limitFriends(); admin();">
+	<!--#include virtual="assets/navBar.html"-->
+	<!--#include file="style.pl"-->
+		<div id="container">
+			<div id="insideContainer"></div>
+			<div id="container2">
+				<div id="column1">
+				<div class="column1Padding">
+				<div class="padding">
+					<!--#include file="profileHeader.pl"-->
+						<table>
+							<tr>
+								<!--#include file="profile.pl"-->
+							</tr>
+						</table>
+					</div>
+					</div>
+				</div>
+				
+				<div id="column1bottom">
+				<!-- HOLDS SPACE FOR THE PROFILE HEADER -->
+				<div id="column1" style="position:relative; top:0px; z-index:-10;">
+				<div class="column1Padding">
+				<div class="padding">
+					<!--#include file="profileHeader.pl"-->
+						<table>
+							<tr>
+								<!--#include file="profile.pl"-->
+							</tr>
+						</table>
+					</div>
+					
+					</div>
+				</div>
+				<!-- HOLDS SPACE FOR THE PROFILE HEADER -->
+				
+					<div class="column1Padding">
+					<div class="padding">
+						<table>
+							<tr class="padding">
+								<h2 class="sectionHeader">Friends</h2>
+								<div style="text-align:center;">
+								<!--#include file="friends.pl"-->
+								</div>
+							</tr>
+						</table>
+					</div></div>
+					<div class="column1Padding">
+						<div class="padding">
+							<h2 class="sectionHeader">About Me</h2>
+							<!--#include file="biography.pl"-->
+						</div>
+					</div>
+				</div>
+				<div id="column2">
+					<h1 class="padding" style="margin:0;">the MidFeed</h1>
+					<div id="feed">
+						<!--#include file="status.pl"-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+</body>
+
+</html>
+  

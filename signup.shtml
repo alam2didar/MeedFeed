@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<!-- Holds the form for the signup page and calls signup.pl -->
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>MidFeed Signup</title>
+	<!-- Check Password Script -->
+	<script type = "text/javascript">
+		var sF = "student";
+		function checkSubmission()
+		{
+			var submit = true;
+			var error = document.getElementsByName("error");
+			
+			//checks to see if all inputs are filled out
+			var array = [ "fname", "bio", "lname", "company", "username", "email", "emailC", "password", "passwordC" ];
+			for( var i = 0; i < array.length; i++ ) {
+				var element = document.getElementsByName(array[i]);
+				
+				if( element[0].value == "" ) {
+					error[i].innerHTML = "*";
+					submit = false;
+				}
+				else {
+					error[i].innerHTML = "";
+				}
+			}
+			
+			
+			//check to see if email matches email conformation and password matches password confirmation
+			
+			var e = document.getElementsByName("email"); e = e[0].value;
+			var eC = document.getElementsByName("emailC"); eC = eC[0].value;
+			var p = document.getElementsByName("password"); p = p[0].value;
+			var pC = document.getElementsByName("passwordC"); pC = pC[0].value;
+			
+			if( e != eC ) {
+				var s = "*email and email conformation do not match.";
+				error[6].innerHTML=s;		
+				submit = false;
+			}
+			if( p != pC ) {
+				var s = "*password and password conformation do not match.";
+				error[8].innerHTML=s;		
+				submit = false;
+			}
+			//check to see if use USNA email
+			var classYear; var alpha;
+			var email = document.getElementsByName("email");
+			email = email[0].value;
+			if( email != "" && sF == "student" ) {
+				if( email.length == 16 ) {	
+					//check for valid class year
+					classYear = parseInt( email.substring(1,3) );
+					if( classYear < 14 || classYear > 17 ) {
+						error[4].innerHTML = "*Not a valid USNA Midshipmen Email (i.e. 'mABXXXX@usna.edu', where AB is your class year ['14-'17].";
+						error[5].innerHTML = "*";
+						submit = false;
+					}
+				
+					//check for valid alpha code
+						//check to make sure it starts with an 'm'
+							//check if ends with '@usna.edu'
+					alpha = parseInt( email.substring(1,7) );
+					if( email.charAt(0) != 'm' || email.substring(7,16) != "@usna.edu" ) {
+						error[5].innerHTML = "*Not a valid USNA Midshipmen Email (i.e. mXXXXXX@usna.edu)";
+						error[6].innerHTML = "*";
+					}
+				}
+				else {
+					error[5].innerHTML = "*Not a valid USNA Midshipmen Email (i.e. mXXXXXX@usna.edu)";
+					error[6].innerHTML = "*";
+				}
+			}
+			else {
+				var end = email.length;
+				var start = end - 9;
+				if( email.substring(start,end) != "@usna.edu" ) {
+					error[5].innerHTML = "*Not a valid USNA email (i.e. yourEmail@usna.edu)";
+					error[6].innerHTML = "*";
+				}
+			}
+			
+			if( !submit ) {
+				error[9].innerHTML = "Fill in (*) before continuing!";
+			}
+			else {
+				var userid;
+				if( sF == "faculty" ) {
+					userid = document.getElementsByName("email");
+					userid = userid[0].value;
+					userid = userid.substring( 0,userid.length-9)
+					classYear = "00";
+				}
+				else {
+					userid = alpha;
+				}
+				error[9].innerHTML = "<input type=\"hidden\" name=\"class\" value=\""+classYear+"\">";
+				error[9].innerHTML += "<input type=\"hidden\" name=\"userid\" value=\""+userid+"\">";
+			}
+			
+			return submit;
+		}
+		
+		function changeCompany( affiliation ) {
+			var company = document.getElementById("companyText");
+			
+			if( affiliation == "faculty" ) { 
+				company.placeholder = "Department";
+			}
+			else {
+				company.placeholder = "Company";
+			}
+			sF = affiliation;
+		}
+		
+		function checkConfirmation( object, confirm ) {
+			var o = document.getElementsByName(object);
+			var oValue = o[0].value;
+			
+			var c = document.getElementsByName(confirm);
+			var cValue = c[0].value;
+			if( cValue == oValue ) {
+				o[0].style.backgroundColor="#00FF00";
+			}
+			else {
+				o[0].style.backgroundColor="#FA5858";
+			}
+			
+		}
+	
+    </script>
+
+</head>
+
+<body onload="checkIfLoggedIn()">
+	<!--#include virtual="assets/navBar.html"-->
+	<!--#include file="style.pl"-->
+	<div id="container">
+		<div id="insideContainer"></div>
+			<div id="signup"><div class="padding">
+				<h1 class="sectionHeader"> MidFeed SignUp </h1>
+				
+				<form action="signup.pl" method="get" onsubmit="return checkSubmission()">
+					<input type="text" placeholder="First Name" name="fname"><span class="error" name="error"></span><span style="position: absolute; right:4px;"class="error" name="error"></span><br/>
+					<input type="text" placeholder="Last Name" name="lname"><span class="error" name="error"></span><br/><br/>
+					<input type="radio" name="studentFaculty" value="student" onClick="changeCompany('student')" checked>Midshipmen
+					<input type="radio" name="studentFaculty" value="faculty" onClick="changeCompany('faculty')">Faculty<br/>
+					<input id="companyText" type="text" placeholder="Company" name="company"><span class="error" name="error"></span><br/><br/>
+					<input type="text" placeholder="Username" name="username"><span class="error" name="error"></span><br/>  
+					<input type="text" placeholder="Email" name="email" onblur="checkConfirmation('email', 'emailC')"><span class="error" name="error"></span><br/>
+					<input type="text" placeholder="Confirm Email" name="emailC" onKeyDown="checkConfirmation('email', 'emailC')" onKeyUp="checkConfirmation('email', 'emailC')"><span class="error" name="error"></span><br/>
+					<input type="password" id="pass1" placeholder="Password" name="password"><span class="error" name="error"></span><br/>
+					<input type="password" id="pass2" placeholder="Confirm Password" name="passwordC" onKeyDown="checkConfirmation('password', 'passwordC')" onKeyUp="checkConfirmation('password', 'passwordC')"><span class="error" name="error"></span><br/>
+					<span style="position:inherit" class="error" name="error"></span><br/>
+					<textarea placeholder="Enter bio" id="bioText" style="position:absolute;right:15px;top:100px;"name="bio"></textarea>
+					<input type="submit" class="submitButton" value="Submit">
+				</form>
+			</div></div>
+	
+	</div>
+	<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+</body>
+
+</html>
+  

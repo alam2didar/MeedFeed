@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!-- Home page is split into two sections, left colum and the right column 
+	The left column, the profile header stays fixed. another profile header was created to take up the same amount of space as the fixed profile header
+	the right column, is the status feed.
+	Perl files are used to dynamically change the home page for each user.
+-->
+<html>
+
+
+<head>
+  <meta charset = "utf-8" />
+  <title>MidFeed Home</title>
+  	
+  <script type = "text/javascript">
+		// Script for the textbox character limit
+	function limitText(limitField, limitCount, limitNum) {
+		if (limitField.value.length > limitNum) {
+			limitField.value = limitField.value.substring(0, limitNum);
+		} else {
+			limitCount.value = limitNum - limitField.value.length;
+		}
+	}	
+	
+	function showStatusOption() {
+		document.getElementById("statusOption").style.visibility = "visible";
+		document.getElementById("statusText").style.height = "6em";
+		
+		document.getElementById("statusOption1").style.visibility = "visible";
+		document.getElementById("statusText1").style.height = "6em";
+	}
+	
+	function hideStatusOption() {
+		document.getElementById("statusOption").style.visibility = "hidden";
+		document.getElementById("statusText").style.height = "2em";
+		
+		document.getElementById("statusOption1").style.visibility = "hidden";
+		document.getElementById("statusText1").style.height = "2em";
+	}
+	
+	function clickedOutsideElement() {
+		var theElem = getEventTarget(window.event);
+		while(theElem != null) {
+			if(theElem.className == "statusOption")
+				return false;
+			theElem = theElem.offsetParent;
+		}
+		return true;
+	}
+
+	function getEventTarget(evt) {
+		var targ = (evt.target) ? evt.target : evt.srcElement;
+		if(targ != null) {
+			if(targ.nodeType == 3)
+				targ = targ.parentNode;
+		}
+		return targ;
+	}
+
+	function checkStatus() {
+		var s = document.getElementById("statusText").value;
+		if( s == "" || s == null ) { alert("You must enter a status"); return false;}
+		else { return true; }
+	}
+	
+	document.onclick = function() {
+		if(clickedOutsideElement())
+			hideStatusOption();
+	}
+</script>
+</head>
+
+<body onload="checkCookie(); limitFriends(); admin('redirect');">
+    
+	 <!--#include virtual="assets/navBar.html"-->
+	  <!--#include file="style.pl"-->
+	<div id="container">
+		<div id="insideContainer"></div>
+		<div id="container2">
+			<div id="column1">
+					<div class="column1Padding">
+				<div class="padding">
+				<!--#include file="profileHeader.pl"-->
+				<form name="myform" method="post" action="statusUpdate.pl" onsubmit="return checkStatus()">
+				<div onFocus="showStatusOption()">
+				<table>
+					<tr>
+						<textarea id="statusText" class="statusOption" name="status" maxlength="140" placeholder="What would you like to share?" wrap=physical onClick="showStatusOption()" onKeyDown="limitText(this.form.status,this.form.countdown,140)" 
+						onKeyUp="limitText(this.form.status,this.form.countdown,140)"></textarea>
+					</tr>
+					<tr id="statusOption" >
+						<td>
+							<input class="statusOption" type="text" style="width:120px" placeholder="Where are you at?" name="location">
+						</td>
+						<td>
+							<select class="statusOption" name="mood">
+									<option value=0>Moods</option>
+									<option value="Mad">Mad</option>
+									<option value="Sad">Sad</option>
+									<option value="Happy">Happy</option>
+									<option value="Chillin...">Chillin...</option>
+							</select>
+						</td>
+						<td>
+							<input class="statusOption" readonly type="text" name="countdown" size="3" value="140">
+						</td>
+						<td>
+							<input class="statusOption" type="submit" value="Post">
+							<input type="hidden" name="page" value="home.shtml">
+						</td>
+					</tr>
+				</table></div>
+				</form>
+				</div>
+					</div>
+			</div>
+			
+			
+			<div id="column1bottom">
+			<!-- THIS IS TO HOLD SPACE FOR THE STATUS PROFILEHEADER-->
+			<div id="column1" style="position:relative; top:0px; z-index:-10;">
+					<div class="column1Padding">
+				<div class="padding">
+				<!--#include file="profileHeader.pl"-->
+				<form name="myform" method="post" action="statusUpdate.pl">
+				<div>
+				<table>
+					<tr>
+						<textarea id="statusText1" class="statusOption" name="status" maxlength="140" placeholder="What would you like to share?" wrap=physical onClick="showStatusOption()" onKeyDown="limitText(this.form.status,this.form.countdown,140)" 
+						onKeyUp="limitText(this.form.status,this.form.countdown,140)"></textarea>
+					</tr>
+					<tr id="statusOption1" >
+						<td>
+							<input class="statusOption" type="text" style="width:120px" placeholder="Where are you at?" name="location">
+						</td>
+						<td>
+							<select class="statusOption" name="mood">
+									<option value=0>Moods</option>
+									<option value="Mad">Mad</option>
+									<option value="Sad">Sad</option>
+									<option value="Happy">Happy</option>
+									<option value="Chillin...">Chillin...</option>
+							</select>
+						</td>
+						<td>
+							<input class="statusOption" readonly type="text" name="countdown" size="3" value="140">
+						</td>
+						<td>
+							<input class="statusOption" type="submit" value="Post">
+							<input type="hidden" name="page" value="home.shtml">
+						</td>
+					</tr>
+				</table></div>
+				</form>
+				</div>
+					</div>
+			</div>
+			<!-- THIS IS TO HOLD SPACE FOR THE PROFILEHEADER-->
+			
+						
+
+
+						
+			
+					<div class="column1Padding">
+				<div class="padding">
+						<table>
+							<tr class="padding">
+								<h2 class="sectionHeader">Friends</h2>
+								<div style="text-align:center;">
+								<!--#include file="friends.pl"-->
+								</div>
+							</tr>
+						</table>	
+				</div>
+					</div>
+					<div class="column1Padding">
+				<div class="padding">
+					<h2 class="sectionHeader">About Me</h2>
+					<!--#include file="biography.pl"-->
+				</div>
+					</div>
+			</div>
+			<div id="column2">
+				<h1 class="padding" style="margin:0;">the MidFeed</h1>
+				<div id="feed">
+				<!--#include file="status.pl"-->						
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer"><h2 class="shadow" style="margin:0;padding:0;text-align:center;">mf.</h4></div>
+	
+</body>
+
+</html>
+  
