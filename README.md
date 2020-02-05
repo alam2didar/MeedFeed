@@ -1,6 +1,6 @@
 # MeedFeed
 A social Webnetwork
-For the IT 350 Final Project which is creating a Social Network for USNA, we the members of the Team-3 created “MidFeed.”, 
+We the members of the Team-3 created “MidFeed.”, 
 the most innovative social networking website which allows the Navy community to share and communicate personal and professional 
 updates with each other in real time. This attractive and user friendly social networking site will meet the user’s demand from 
 all Navy communities. Starting with Midshipmen, the USNA faculty, all navy members and naval academy familywill now get one step 
