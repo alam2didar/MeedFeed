@@ -1,5 +1,6 @@
 # MeedFeed
 A social Webnetwork
+
 We the members of the Team-3 created “MidFeed.”, 
 the most innovative social networking website which allows the Navy community to share and communicate personal and professional 
 updates with each other in real time. This attractive and user friendly social networking site will meet the user’s demand from 
